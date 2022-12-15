@@ -1,0 +1,19 @@
+{
+  "files": [
+    "./src/lib.ts", "src/objects/unique.ts"
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "target": "es2021",
+    "module": "commonjs",
+    "lib": ["dom", "es2021"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "./build/prod/types/"
+  }
+}
