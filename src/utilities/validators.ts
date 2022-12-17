@@ -37,6 +37,13 @@ export const isString = (symbol: any)
   : symbol is string =>
   typeof symbol === "string";
 
+  /**
+   * Helper to check if something is a string.
+   */
+  export const isSymbol = (symbol: any)
+    : symbol is symbol =>
+    typeof symbol === "symbol";
+
 /**
  * Helper to check if somethings specifically an array.
  * 

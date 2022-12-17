@@ -27,9 +27,9 @@ esbuild.build({
     ? 'inline'
     : false,
   treeShaking: true,
-  outfile: 'build'
+  outfile: 'build/'
     + (dev
       ? 'dev'
       : 'prod')
-  + '/lib/main.js',
+  + '/lib.js',
 }).catch(() => process.exit(1));

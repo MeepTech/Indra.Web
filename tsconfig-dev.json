@@ -1,6 +1,7 @@
 {
-  "files": [
-    "./src/lib.ts"
+  "include": [
+    "./src/lib.ts",
+    "./tests/jest/*"
   ],
   "compilerOptions": {
     "incremental": true,
@@ -9,11 +10,15 @@
     "lib": ["dom", "es2021"],
     "jsx": "react-jsx",
     "strict": true,
-    "sourceMap": true,
+    "noImplicitAny": true,
     "moduleResolution": "node",
+    "declaration": true,
+	  "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "inlineSourceMap": true,
     "resolveJsonModule": true,
+    "importHelpers": true,
+    "strictNullChecks": true,
     "allowJs": true,
     "outDir": "./build/dev/types/"
   }

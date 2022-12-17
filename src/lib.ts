@@ -5,14 +5,14 @@ import './utilities/array';
 import './utilities/set';
 
 // types
-import Focus, { IFocus } from '../src/objects/focuses/focus';
-import Entity, { IEntity } from '../src/objects/focuses/entities/entity';
-import Place, { IPlace, IEntityContainer } from '../src/objects/focuses/places/place';
-import Room, { IRoom } from '../src/objects/focuses/places/room';
-import { IAction } from '../src/objects/commands/action';
-import { IComponent } from '../src/objects/components/component';
-import Dex, { TDex, HashKey} from '../src/utilities/dex';
+import Dex, { TDex, HashKey} from './objects/dex';
 import IUnique from './objects/unique';
+import Focus, { IFocus } from './objects/focuses/focus';
+import Entity, { IEntity } from './objects/focuses/entities/entity';
+import Place, { IPlace, IEntityContainer } from './objects/focuses/places/place';
+import Room, { IRoom } from './objects/focuses/places/room';
+import { IAction } from './objects/commands/action';
+import { IComponent } from './objects/components/component';
 
 export {
   // unique.ts
