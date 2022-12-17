@@ -52,7 +52,7 @@ describe("class Dex implements TDex", () => {
       const _2_1 = dex.query(Flags.First, "strictly-with-this-tag");
       const _3 = dex.select.not.or("not-this", "or-this");
       const _4 = dex.query(Flags.Chain, "without-this").select("with-this-though")
-      const _4_1 = dex.query(Flags.Chain | Flags.Or, "without-this").first("with-this-though")
+      const _4_1 = dex.query(Flags.Chain | Flags.Or, "this", "or-this").first("one-that-has-this")
       const _5 = dex.select.not(Flags.Chain, "without-this").and("with-this-though");
       const f_1 = dex.tags.for("eNTRY ID 1");
       const entries = dex.map.entries();
@@ -278,7 +278,7 @@ describe("class Dex implements TDex", () => {
       describe("...{entry: TEntry}[]", () => {
         test("({entry: TEntry}) => Dex with only one entry with NO tags", () => {
           const entry = {};
-          const dex = new Dex<{}>({ entry: {} });
+          const dex = new Dex<{}>({ entry });
 
           expect_countsToEqual(dex, 1, 0);
           expect_entryHasNoTags(dex, entry);
@@ -286,7 +286,7 @@ describe("class Dex implements TDex", () => {
         test("({entry: TEntry}, {entry: TEntry}) => Dex with multiple entries with NO tags", () => {
           const entry = {};
           const entry2 = {};
-          const dex = new Dex<{}>({ entry: {} });
+          const dex = new Dex<{}>({ entry }, { entry: entry2 });
 
           expect_countsToEqual(dex, 2, 0);
           expect_entryHasNoTags(dex, entry);
@@ -295,16 +295,40 @@ describe("class Dex implements TDex", () => {
       });
       describe("{entry: TEntry}[]", () => {
         test("([{entry: TEntry}]) => Dex with only entries with NO tags", () => {
-          // TODO: implement
-        
+          const entry = {};
+          const dex = new Dex<{}>([{ entry }]);
+
+          expect_countsToEqual(dex, 1, 0);
+          expect_entryHasNoTags(dex, entry);
         });
         test("([{entry: TEntry}, {entry: TEntry}]) => Dex with only entries with NO tags", () => {
-          // TODO: implement
+          const entry = {};
+          const entry2 = {};
+          const dex = new Dex<{}>([{entry}, {entry: entry2}]);
 
+          expect_countsToEqual(dex, 2, 0);
+          expect_entryHasNoTags(dex, entry);
+          expect_entryHasNoTags(dex, entry2);
         });
       });
       describe("...{entry: TEntry, tag: Tag}[]", () => {
-        // TODO: implement all similar to above 
+        test("({entry: TEntry, tag: Tag}) => Dex with only one entry with one tag", () => {
+          const entry = {};
+          const dex = new Dex<{}>([{ entry, tag: testTag }]);
+
+          expect_countsToEqual(dex, 1, 0);
+          expect_tagsToHaveEntries(dex, testTag, [entry]);
+          expect_entryToHaveTags(dex, entry, [testTag]);
+        });
+        test("({entry: TEntry, tag: Tag}, {entry: TEntry, tag: Tag}) => Dex with multiple entries with one tag each", () => {
+          const entry = {};
+          const entry2 = {};
+          const dex = new Dex<{}>({ entry, tag: testTag}, {entry: entry2, tag: testTag2});
+
+          expect_countsToEqual(dex, 2, 0);
+          expect_entryHasNoTags(dex, entry);
+          expect_entryHasNoTags(dex, entry2);
+        });
       });
       describe("{entry: TEntry, tag: Tag}[]", () => {
         // TODO: implement all similar to above 

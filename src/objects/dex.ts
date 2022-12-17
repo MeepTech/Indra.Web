@@ -768,7 +768,7 @@ export default class Dex<TEntry extends Entry = Entry> {
     tagOrOptions: Flags | Tag,
     ...additionalTags: Array<Tag>
   ): TEntry {
-
+    
   }
 
   any(
